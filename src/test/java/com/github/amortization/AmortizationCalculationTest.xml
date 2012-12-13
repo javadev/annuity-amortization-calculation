@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root>
+    <testCalcAnnuitySums>
+		<CalculationInputParameters>
+	        <rate>10</rate>
+	        <amount>100</amount>
+	        <duration>1</duration>
+		</CalculationInputParameters>
+    </testCalcAnnuitySums>
+	<testCalcAnnuitySumsWithMonthlyFee>
+		<CalculationInputParameters>
+			<rate>10</rate>
+			<amount>1000</amount>
+			<duration>10</duration>
+			<monthlyRate>3.5</monthlyRate>
+		</CalculationInputParameters>
+	</testCalcAnnuitySumsWithMonthlyFee>
+	<testCalcAnnuitySumsWithMonthlyFee2>
+		<CalculationInputParameters>
+			<rate>10</rate>
+			<amount>11521.7</amount>
+			<duration>12</duration>
+			<monthlyRate>1.18</monthlyRate>
+		</CalculationInputParameters>
+	</testCalcAnnuitySumsWithMonthlyFee2>
+</root>
