@@ -76,18 +76,22 @@
                     <encoding>${project.build.sourceEncoding}</encoding>
                 </configuration>
             </plugin>            
-        </plugins>
-    </build>
-
-    <reporting>
-        <plugins>
             <plugin>
-               <groupId>org.codehaus.mojo</groupId>
-               <artifactId>cobertura-maven-plugin</artifactId>
-               <version>2.5.2</version>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>3.0</version>
+                <configuration>
+                    <reportPlugins>
+                        <plugin>
+                            <groupId>org.codehaus.mojo</groupId>
+                            <artifactId>cobertura-maven-plugin</artifactId>
+                            <version>2.5.2</version>
+                        </plugin>
+                    </reportPlugins>
+                </configuration>
             </plugin>
         </plugins>
-    </reporting>
+    </build>
 
     <properties>
         <slf4j.version>1.5.8</slf4j.version>        
