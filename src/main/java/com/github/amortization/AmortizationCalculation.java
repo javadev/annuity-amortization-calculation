@@ -98,7 +98,6 @@ public class AmortizationCalculation {
         }
 
         int size = calendar.size();
-        boolean isFirstInstallment = true;
         Payment previous = null;
         Calendar totalCalendarDate = Calendar.getInstance();
         for (int index = 0; index < size; index += 1) {
@@ -131,7 +130,7 @@ public class AmortizationCalculation {
         // round all payments
         completeTotal(totalCalendarDate);
 
-        if ((this.parameters.getEndGracePeriod() != null) && (this.parameters.getEndGracePeriod() > 0)) {
+        if (parameters.getEndGracePeriod() != null && this.parameters.getEndGracePeriod() > 0) {
             try {
                 this.endGracePeriodDate = this.payments.get(this.parameters.getEndGracePeriod().intValue()).getDate();
                 LOG.debug(this, "calc(): EndGracePeriodDate=" + this.endGracePeriodDate);
