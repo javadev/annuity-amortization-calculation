@@ -102,12 +102,12 @@ public class MonthlyCalendarFiller {
 
 
         boolean correctDate = true;
-        for (int i = 0; i < duration; i++) {
+        for (int index = 0; index < duration; index += 1) {
             calendar.add(Calendar.MONTH, 1);
-            if (i == 0) {
+            if (index == 0) {
                 firstPaymentDate = calendar.getTime();
             }
-            if (i == duration - 1) {
+            if (index == duration - 1) {
                 Calendar calendarEndDate = Calendar.getInstance();
                 calendarEndDate.setTime(calendar.getTime());
                 calendarEndDate.set(Calendar.DATE, day);
@@ -122,7 +122,6 @@ public class MonthlyCalendarFiller {
                     calendar.add(Calendar.MONTH, 1);
                     currentDate = correctDate(calendar, day);
                 }
-                // next line added at 23.11.2009 according CFIT-433
                 firstPaymentDate = currentDate;
                 correctDate = false;
             }

@@ -20,6 +20,7 @@ package com.github.amortization;
 import java.util.List;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 /**.
@@ -27,6 +28,12 @@ import org.junit.Test;
  * @version $Revision$ $Date$
  */
 public class AmortizationPlanTest extends AbstractTarificationTestCase {
+
+    @Before
+    public void setUp() {
+        org.apache.log4j.BasicConfigurator.configure();
+    }
+
     /**
      * test of Grace Period
      */
@@ -56,7 +63,7 @@ public class AmortizationPlanTest extends AbstractTarificationTestCase {
                     index++;
                     continue;
                 }
-                LOG.debug(this, index + ">>> Full Payment: " + payment.getTotalPayment() + "  Capital Payment:"
+                LOG.debug(this, index + ">>> Date: " + payment.getDate() + " Full Payment: " + payment.getTotalPayment() + "  Capital Payment:"
                         + payment.getCapitalPayment() + "  Interest Payment:" + payment.getInterestPayment()
                         + " Monthly Payment:" + payment.getMonthlyFee());
                 totalBody += payment.getTotalPayment();
@@ -86,7 +93,7 @@ public class AmortizationPlanTest extends AbstractTarificationTestCase {
                     index++;
                     continue;
                 }
-                LOG.debug(this, index + ">>> Grace Payment: " + payment.getTotalPayment() + "  Capital Payment:"
+                LOG.debug(this, index + ">>> Date: " + payment.getDate() + " Grace Payment: " + payment.getTotalPayment() + "  Capital Payment:"
                         + payment.getCapitalPayment() + "  Interest Payment:" + payment.getInterestPayment()
                         + " Monthly Payment:" + payment.getMonthlyFee());
                 graceBody += payment.getTotalPayment();

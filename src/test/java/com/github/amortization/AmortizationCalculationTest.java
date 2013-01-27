@@ -21,7 +21,6 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.Collections;
 
-import org.junit.Before;
 import org.junit.Test;
 
 /**.
@@ -30,11 +29,6 @@ import org.junit.Test;
  */
 public class AmortizationCalculationTest extends AbstractTarificationTestCase {
     private AmortizationCalculation amortizationCalculation;
-
-    @Before
-    public void setUp() {
-       org.apache.log4j.BasicConfigurator.configure();
-    }
 
     /**
      * Test method for calcAnnuitySums(double, int).

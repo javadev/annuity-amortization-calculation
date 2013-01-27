@@ -101,14 +101,14 @@ public class AmortizationCalculation {
         boolean isFirstInstallment = true;
         Payment previous = null;
         Calendar totalCalendarDate = Calendar.getInstance();
-        for (int i = 0; i < size; i++) {
+        for (int index = 0; index < size; index += 1) {
             Payment payment;
-            PaymentDate paymentDate = (PaymentDate) calendar.get(i);
+            PaymentDate paymentDate = (PaymentDate) calendar.get(index);
             if (paymentDate != null && paymentDate.getDate() != null) {
                 totalCalendarDate.setTime(paymentDate.getDate());
             }
 
-            if (i == 0) {
+            if (index == 0) {
                 payment = new Payment();
                 payment.setTotalPayment(-parameters.getAmount());
                 payment.setDate(paymentDate.getDate());
@@ -116,19 +116,9 @@ public class AmortizationCalculation {
                 payments.add(payment);
                 continue;
             }
-            if (isFirstInstallment) {
-                isFirstInstallment = false;
-                payment = calcFirstInstallment(paymentDate, i);
-                previous = payment;
-            } else {
-                if (i + 1 == size) {
-                    payment = calcLastInstallment(paymentDate, previous, i);
-                } else {
-                    payment = calcInstallment(paymentDate, previous, i);
-                }
-
-                previous = payment;
-            }
+            payment = index == 1 ? calcFirstInstallment(paymentDate, index) : index + 1 == size
+                ? calcLastInstallment(paymentDate, previous, index) : calcInstallment(paymentDate, previous, index);
+            previous = payment;
             payment.setMonthlyFeeRate(parameters.getMonthlyRate());
             payment.setOpeningFeeRate(parameters.getOpeningRate());
             payment.setNominalRate(parameters.getRate());
@@ -139,7 +129,6 @@ public class AmortizationCalculation {
             payments.add(payment);
         }
         // round all payments
-        // saveToFile(getRandomFileName("/tmp/round_analise/"), this.payments, total);
         completeTotal(totalCalendarDate);
 
         if ((this.parameters.getEndGracePeriod() != null) && (this.parameters.getEndGracePeriod() > 0)) {
@@ -204,9 +193,9 @@ public class AmortizationCalculation {
             boolean isLastFor = (offset / 10 < P_PRECISION) || cnt >= precision;
             for (; currentRate > P_PRECISION; currentRate = currentRate - offset) {
                 localRate = .00;
-                for (int i = 0; i < size; i++) {
-                    Payment payment = (Payment) payments.get(i);
-                    netValue = payment.getTotalPayment() / Math.pow(1 + currentRate / 12, i);
+                for (int index = 0; index < size; index += 1) {
+                    Payment payment = (Payment) payments.get(index);
+                    netValue = payment.getTotalPayment() / Math.pow(1 + currentRate / 12, index);
                     localRate += netValue;
                     if (isLastFor) {
                         payment.setNetValue(netValue);
@@ -388,7 +377,7 @@ public class AmortizationCalculation {
      * @return rounded value.
      */
     public double round(double value, int number) {
-        BigDecimal bd = new BigDecimal(Double.toString(value));
+        BigDecimal bd = BigDecimal.valueOf(value);
         bd = bd.setScale(number, BigDecimal.ROUND_HALF_UP);
         return bd.doubleValue();
     }
