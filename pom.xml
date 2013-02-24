@@ -41,6 +41,7 @@
     </dependencies>
 
     <build>
+        <finalName>${artifactId}</finalName>
         <resources>
             <resource>
                 <filtering>false</filtering>
@@ -66,6 +67,65 @@
             </testResource>
         </testResources>
         <plugins>
+            <plugin>  
+              <groupId>org.apache.maven.plugins</groupId>  
+              <artifactId>maven-jar-plugin</artifactId>  
+              <version>2.2</version>
+              <configuration>  
+                <archive>  
+                  <manifest>  
+                    <mainClass>com.github.amortization.Amortization</mainClass>  
+                  </manifest>  
+                </archive>  
+              </configuration>  
+            </plugin> 
+            <plugin>
+              <groupId>org.codehaus.mojo</groupId>
+              <artifactId>exec-maven-plugin</artifactId>
+              <version>1.1</version>
+              <executions>
+                <execution>
+                  <goals>
+                    <goal>java</goal>
+                  </goals>
+                </execution>
+              </executions>
+              <configuration>
+                <mainClass>com.github.amortization.Amortization</mainClass>
+              </configuration>
+            </plugin>
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-shade-plugin</artifactId>
+              <version>1.4</version>
+              <executions>
+                <execution>
+                  <phase>package</phase>
+                  <goals>
+                    <goal>shade</goal>
+                  </goals>
+                  <configuration>
+                    <filters>
+                      <filter>
+                        <artifact>*:*</artifact>
+                        <excludes>
+                          <exclude>META-INF/maven/**</exclude>
+                          <exclude>META-INF/services/**</exclude>
+                          <exclude>META-INF/COPYRIGHT.html</exclude>
+                          <exclude>META-INF/LICENSE*</exclude>
+                          <exclude>META-INF/NOTICE*</exclude>
+                          <exclude>META-INF/README.txt</exclude>
+                          <exclude>META-INF/DEPENDENCIES*</exclude>
+                          <exclude>LICENSE.txt</exclude>
+                          <exclude>rhinoDiff.txt</exclude>
+                          <exclude>license/**</exclude>
+                        </excludes>
+                      </filter>
+                    </filters>
+                  </configuration>
+                </execution>
+              </executions>
+            </plugin>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>2.3.2</version>

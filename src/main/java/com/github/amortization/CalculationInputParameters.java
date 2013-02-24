@@ -62,7 +62,7 @@ public class CalculationInputParameters implements Serializable {
     public CalculationInputParameters() {
         amount = .00;
         coreAmount = .00;
-        rate = .00;
+        rate = .01;
         openingRate = .00;
         monthlyRate = .00;
         duration = 0;

@@ -2,3 +2,5 @@ annuity-amortization-calculation [![Build Status](https://secure.travis-ci.org/j
 ================================
 
 The tool to calculate amortization plan
+
+[![Screen short](https://raw.github.com/javadev/annuity-amortization-calculation/master/amortization.png)](https://github.com/javadev/annuity-amortization-calculation)
