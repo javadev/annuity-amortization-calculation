@@ -1,4 +1,4 @@
-annuity-amortization-calculation [![Build Status](https://secure.travis-ci.org/javadev/annuity-amortization-calculation.svg)](http://travis-ci.org/javadev/annuity-amortization-calculation)
+annuity-amortization-calculation [![Java CI](https://github.com/javadev/annuity-amortization-calculation/actions/workflows/maven.yml/badge.svg)](https://github.com/javadev/annuity-amortization-calculation/actions/workflows/maven.yml)
 ================================
 
 The tool to calculate amortization plan
